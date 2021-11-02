@@ -23,14 +23,22 @@ def exercice2(source: str, dest: str) -> None:
             f2.write(f1.readlines().replace(" ", "   "))
 
 
-def exercice3():
+def exercice3() -> None:
     filename = "notes.txt"
     dest = "notes2.txt"
     with open(filename) as f1:
         with open(dest) as f2:
             for line in f1.readlines():
-                grade = int(line)
+                n = int(line)
+                for k, v in PERCENTAGE_TO_LETTER.items():
+                    if n in range(*v):
+                        grade = k
+                        break
                 f2.write(f"{line} {grade}")
+
+
+def exercice4():
+    pass
 
 
 def main() -> None:
@@ -40,6 +48,7 @@ def main() -> None:
     exercice1(f1, f2)
     exercice2(f1, f3)
     exercice3()
+    exercice4()
 
 
 if __name__ == '__main__':
