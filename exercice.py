@@ -6,14 +6,15 @@ PERCENTAGE_TO_LETTER = {"A*": [95, 101], "A": [90, 95], "B+": [85, 90], "B": [80
 
 
 def exercice1(filename1: str, filename2: str) -> None:
-    i = 1
     with open(filename1) as f1:
-        with open(filenane2) as f2:
-            for line1 in f1.readlines():
+        with open(filename2) as f2:
+            for i, line1 in enumerate(f1.readlines()):
                 line2 = f2.readline()
                 if line1 != line2:
-                    raise ValueError(f"Line {i} differs")
-                i += 1
+                    print(f"Line {i + 1} differs")
+
+            if f2.readline():
+                print("The second line has more lines")
 
 
 def exercice2(source: str, dest: str) -> None:
@@ -22,12 +23,23 @@ def exercice2(source: str, dest: str) -> None:
             f2.write(f1.readlines().replace(" ", "   "))
 
 
+def exercice3():
+    filename = "notes.txt"
+    dest = "notes2.txt"
+    with open(filename) as f1:
+        with open(dest) as f2:
+            for line in f1.readlines():
+                grade = int(line)
+                f2.write(f"{line} {grade}")
+
+
 def main() -> None:
     f1 = "exemple.txt"
     f2 = "notes.txt"
     f3 = "dest.txt"
     exercice1(f1, f2)
     exercice2(f1, f3)
+    exercice3()
 
 
 if __name__ == '__main__':
